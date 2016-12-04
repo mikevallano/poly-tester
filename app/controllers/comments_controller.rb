@@ -27,8 +27,19 @@ private
   end
 
   def load_commentable
-    klass = [Article, Comment].detect { |c| params["#{c.name.underscore}_id"] }
-    @commentable = klass.find(params["#{klass.name.underscore}_id"])
+    if params[:article_id]
+      @commentable = Article.find(params[:article_id])
+    elsif params[:comment_id]
+      @commentable = Comment.find(params[:comment_id])
+    end
   end
+
+  # def load_commentable
+  #     @commentable = params[:commentable].classify.constantize.find(commentable_id)
+  # end
+
+  # def commentable_id
+  #   params[(params[:commentable].singularize + "_id").to_sym]
+  # end
 
 end

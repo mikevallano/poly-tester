@@ -27,10 +27,11 @@
     <% @article.comments.each do |comment| %>
       <tr>
         <td><%= comment.body %></td>
-        <td><%= link_to 'Edit', edit_article_comment_path(@article, comment) %></td>
+        <td><%#= link_to 'Reply', new_comment_commentable_path(@comment) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
+<p><%#= link_to "New Comment", [:new, @commentable, :comment] %></p>
 <p><%= link_to "New Comment", new_article_comment_path(@article), class: 'btn btn-success' %></p>
