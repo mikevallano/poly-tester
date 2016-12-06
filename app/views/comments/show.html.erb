@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @comment.body %>
+</p>
+
+<h2>Comments</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Body</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @comment.comments.each do |comment| %>
+      <tr>
+        <td><%= comment.body %></td>
+        <td><%= link_to 'Reply', new_comment_path(commentable_type: "comment", commentable: comment) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p><%= link_to "New Comment", new_comment_path(commentable_type: "comment", commentable: @comment), class: 'btn btn-default' %></p>

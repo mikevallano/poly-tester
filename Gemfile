@@ -40,6 +40,7 @@ group :development, :test do
   gem 'terminal-notifier-guard'
   gem 'spring-commands-rspec'
   gem 'spring'
+  gem 'better_errors'
 end
 
 group :test do

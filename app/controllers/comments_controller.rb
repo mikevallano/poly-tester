@@ -6,6 +6,10 @@ class CommentsController < ApplicationController
     @comments = @commentable.comments
   end
 
+  def show
+    @comment = Comment.find(params[:id])
+  end
+
   def new
     @comment = @commentable.comments.new
   end
@@ -13,7 +17,7 @@ class CommentsController < ApplicationController
   def create
     @comment = @commentable.comments.new(comment_params)
     if @comment.save
-      redirect_to @commentable, notice: "Comment created."
+      redirect_to comment_path(@comment, commentable: @comment, commentable_type: @comment.commentable_type), notice: "Comment created."
     else
       render :new
     end
@@ -27,19 +31,9 @@ private
   end
 
   def load_commentable
-    if params[:article_id]
-      @commentable = Article.find(params[:article_id])
-    elsif params[:comment_id]
-      @commentable = Comment.find(params[:comment_id])
-    end
+    @commentable_type = params[:commentable_type] || params[:comment][:commentable_type]
+    @commentable_id = params[:commentable] || params[:comment][:commentable]
+    @commentable = @commentable_type.classify.constantize.find(@commentable_id)
   end
-
-  # def load_commentable
-  #     @commentable = params[:commentable].classify.constantize.find(commentable_id)
-  # end
-
-  # def commentable_id
-  #   params[(params[:commentable].singularize + "_id").to_sym]
-  # end
 
 end
