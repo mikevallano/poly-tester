@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Flames</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @flames.each do |flame| %>
+      <tr>
+        <td><%= flame.name %></td>
+        <td><%= flame.description %></td>
+        <td><%= flame.colors %></td>
+        <td><%= link_to 'Show', flame %></td>
+        <td><%= link_to 'Edit', edit_flame_path(flame) %></td>
+        <td><%= link_to 'Destroy', flame, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Flame', new_flame_path %>

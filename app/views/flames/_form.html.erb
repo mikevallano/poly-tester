@@ -1,0 +1,29 @@
+<%= form_for(@flame) do |f| %>
+  <% if @flame.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@flame.errors.count, "error") %> prohibited this flame from being saved:</h2>
+
+      <ul>
+      <% @flame.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :colors %><br>
+    <%= f.text_field :colors %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @flame.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @flame.description %>
+</p>
+
+<%= link_to 'Edit', edit_flame_path(@flame) %> |
+<%= link_to 'Back', flames_path %>
